@@ -11,6 +11,7 @@ pipeline {
                 echo "Building"
                 sh "npm install"
                 sh "npm install --save-dev webpack"
+                sh "npm install --save-dev webpack-cli"
                 sh "npm run build"
                  
             }
