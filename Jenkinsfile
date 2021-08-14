@@ -14,19 +14,17 @@ pipeline {
                  
             }
         }
-        stage("Test") {
-             
-        steps {
-                 
-                echo "Testing"
-                sh "npm test"
-                
-                 
+        	    stage('SonarQube analysis') {
+            environment {
+                scannerHome = tool 'sonarscanner'
             }
-            post{
-                always{
-                    cobertura autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/output/coverage/jest/cobertura-coverage.xml', conditionalCoverageTargets: '70, 0, 0', failUnhealthy: false, failUnstable: false, lineCoverageTargets: '80, 0, 0', maxNumberOfBuilds: 0, methodCoverageTargets: '80, 0, 0', onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false
-                    
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                  sh "npm install --save-dev mocha chai"
+                  sh "npm run test"
+                  sh "npm run coverage-Icov"
+                  sh "${scannerHome}/bin/sonar-scanner"
+                  sh "npm run sonar"
                 }
             }
         }
