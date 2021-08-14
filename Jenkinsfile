@@ -10,6 +10,7 @@ pipeline {
         steps {
                 echo "Building"
                 sh "npm install"
+                sh "npm install --save-dev webpack"
                 sh "npm run build"
                  
             }
