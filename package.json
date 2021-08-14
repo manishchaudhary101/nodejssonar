@@ -11,7 +11,7 @@
     "coverage": "./node_modules/.bin/nyc -r cobertura -r text-summary -r html npm test",
     "coverage-lcov": "./node_modules/.bin/nyc -r cobertura -r text-summary -r lcov npm test",
     "start": "nodemon src/index.js",
-    "build": "webpack -p",
+    "build": "react-scripts build",
     "lint": "./node_modules/.bin/eslint ."
 
   },
