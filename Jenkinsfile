@@ -12,8 +12,9 @@ pipeline {
                 sh "npm install"
                 sh "npm install --save-dev webpack"
                 sh "npm install --save-dev webpack-cli"
-                sh "webpack --mode=development"
+                
                 sh "npm run build"
+                sh "webpack --mode=development"
                  
             }
         }
